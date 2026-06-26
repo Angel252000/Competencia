@@ -3,17 +3,18 @@ import type { Metadata } from "next";
 export const SITE = {
   name: "1ra Competencia de Programación UNADECA",
   shortName: "Competencia UNADECA",
-  url: "https://unadeca.edu.do",
-  email: "competencias@unadeca.edu.do",
-  location: "Campus UNADECA, Santo Domingo, República Dominicana",
+  url: "https://www.unadeca.ac.cr",
+  email: "competencia@unadeca.ac.cr",
+  location: "Campus UNADECA, Alajuela, Costa Rica",
+  mapsQuery: "Universidad Adventista de Centroamérica, Costa Rica",
   year: 2026,
 } as const;
 
 export const SITE_METADATA: Metadata = {
   title: SITE.name,
-  description: `Participa en la primera competencia de programación de UNADECA. Hackathons, talleres, premios y más para estudiantes de todo el país.`,
-  keywords: ["UNADECA", "competencia de programación", "hackathon", "República Dominicana", "programación", "estudiantes"],
-  openGraph: { title: SITE.name, description: `Participa en la primera competencia de programación de UNADECA.`, locale: "es_DO", type: "website" },
+  description: `Participa en la primera competencia de programación de UNADECA. Hackathons, talleres, premios y más para estudiantes de toda Centroamérica.`,
+  keywords: ["UNADECA", "competencia de programación", "hackathon", "Costa Rica", "Centroamérica", "programación", "estudiantes"],
+  openGraph: { title: SITE.name, description: `Participa en la primera competencia de programación de UNADECA.`, locale: "es_CR", type: "website" },
 };
 
 export interface NavItem {
@@ -24,7 +25,7 @@ export interface NavItem {
 export const NAV_ITEMS: NavItem[] = [
   { label: "El Evento", href: "/#about" },
   { label: "Cronograma", href: "/cronograma" },
-  { label: "Proyectos", href: "/proyectos" },
+  { label: "Entrenamiento", href: "/entrenamiento" },
   { label: "Registro", href: "/registro" },
   { label: "FAQ", href: "/faq" },
   { label: "Contacto", href: "/contacto" },
@@ -51,7 +52,7 @@ export const HERO_STATS = [
 
 export const ABOUT_FEATURES = [
   { icon: "🎯", title: "Retos reales", desc: "Problemas del mundo real para resolver" },
-  { icon: "👥", title: "Networking", desc: "Conoce a otros talentos del país" },
+  { icon: "👥", title: "Networking", desc: "Conoce a otros talentos de la región" },
   { icon: "🏆", title: "Premios", desc: "Más de $10,000 en premios" },
   { icon: "📚", title: "Talleres", desc: "Aprende de expertos de la industria" },
 ] as const;
@@ -97,11 +98,11 @@ export const SCHEDULE: ScheduleDay[] = [
 ];
 
 export const SCHEDULE_TYPE_STYLES: Record<string, string> = {
-  apertura: "border-l-blue-bright bg-blue-bright/5",
-  taller: "border-l-yellow bg-yellow/5",
-  competencia: "border-l-green-500 bg-green-500/5",
-  premio: "border-l-purple-500 bg-purple-500/5",
-  cierre: "border-l-gray-400 bg-gray-100",
+  apertura: "border-l-neon bg-neon/5",
+  taller: "border-l-gold bg-gold/5",
+  competencia: "border-l-electric bg-electric/5",
+  premio: "border-l-[#a855f7] bg-[#a855f7]/5",
+  cierre: "border-l-text-mute bg-panel/40",
 };
 
 export const SCHEDULE_TYPE_LABELS: Record<string, string> = {
@@ -121,7 +122,7 @@ export interface FooterLink {
 export const FOOTER_LINKS: Record<string, FooterLink[]> = {
   Evento: [
     { label: "Cronograma", href: "/cronograma" },
-    { label: "Proyectos", href: "/proyectos" },
+    { label: "Entrenamiento", href: "/entrenamiento" },
     { label: "Registro", href: "/registro" },
     { label: "FAQ", href: "/faq" },
   ],
@@ -131,8 +132,8 @@ export const FOOTER_LINKS: Record<string, FooterLink[]> = {
     { label: "Guía del participante", href: "/faq" },
   ],
   UNADECA: [
-    { label: "Sobre UNADECA", href: "https://unadeca.edu.do", external: true },
-    { label: "Carreras", href: "https://unadeca.edu.do", external: true },
+    { label: "Sobre UNADECA", href: "https://www.unadeca.ac.cr", external: true },
+    { label: "Carreras", href: "https://www.unadeca.ac.cr", external: true },
     { label: "Contacto", href: "/contacto" },
   ],
 };
@@ -145,7 +146,7 @@ export interface FaqItem {
 export const FAQ_ITEMS: FaqItem[] = [
   {
     question: "¿Quién puede participar?",
-    answer: "Estudiantes universitarios de cualquier carrera y universidad del país. No es necesario ser de UNADECA. También pueden participar estudiantes de término y recién graduados (menos de 1 año).",
+    answer: "Estudiantes universitarios de cualquier carrera y universidad de la región. No es necesario ser de UNADECA. También pueden participar estudiantes de término y recién graduados (menos de 1 año).",
   },
   {
     question: "¿Tengo que saber programar?",

@@ -9,23 +9,23 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-sm border-b border-gray-200/50 shadow-sm">
+    <header className="sticky top-0 z-50 w-full border-b border-line/70 bg-void/80 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-navy-dark text-white text-sm font-bold">
+        <Link href="/" className="flex items-center gap-2.5 group">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-neon to-electric text-sm font-bold text-void shadow-[0_0_18px_rgba(34,211,238,0.45)]">
             U
           </div>
-          <span className="hidden text-sm font-semibold text-navy-dark sm:block">
-            Competencia UNADECA
+          <span className="hidden font-display text-sm font-bold uppercase tracking-wider text-text sm:block">
+            Competencia <span className="text-neon">UNADECA</span>
           </span>
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-6">
+        <nav className="hidden lg:flex items-center gap-7">
           {NAV_ITEMS.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-gray-700 transition-colors hover:text-blue-bright"
+              className="text-sm font-medium text-text-dim transition-colors hover:text-neon"
             >
               {item.label}
             </Link>
@@ -35,14 +35,14 @@ export default function Header() {
         <div className="flex items-center gap-3">
           <Link
             href="/registro"
-            className="hidden sm:inline-flex items-center gap-2 rounded-lg bg-yellow px-4 py-2 text-sm font-semibold text-navy-dark transition-all hover:scale-[1.02] hover:bg-yellow-dark active:scale-95"
+            className="hidden sm:inline-flex items-center gap-2 rounded-lg bg-neon px-4 py-2 text-sm font-bold uppercase tracking-wide text-void transition-all hover:scale-[1.03] hover:shadow-[0_0_24px_rgba(34,211,238,0.55)] active:scale-95"
           >
             Inscríbete
             <IconArrow />
           </Link>
 
           <button
-            className="lg:hidden rounded-lg p-2 text-gray-700 hover:bg-gray-100"
+            className="lg:hidden rounded-lg p-2 text-text-dim hover:bg-panel hover:text-neon"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Menú"
           >
@@ -58,13 +58,13 @@ export default function Header() {
       </div>
 
       {mobileOpen && (
-        <div className="lg:hidden border-t border-gray-200 bg-white">
-          <nav className="flex flex-col px-4 py-4 space-y-2">
+        <div className="lg:hidden border-t border-line bg-deep">
+          <nav className="flex flex-col px-4 py-4 space-y-1">
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="rounded-lg px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 hover:text-blue-bright"
+                className="rounded-lg px-3 py-2 text-sm font-medium text-text-dim transition-colors hover:bg-panel hover:text-neon"
                 onClick={() => setMobileOpen(false)}
               >
                 {item.label}
@@ -72,7 +72,7 @@ export default function Header() {
             ))}
             <Link
               href="/registro"
-              className="mt-2 inline-flex items-center justify-center gap-2 rounded-lg bg-yellow px-4 py-2 text-sm font-semibold text-navy-dark"
+              className="mt-2 inline-flex items-center justify-center gap-2 rounded-lg bg-neon px-4 py-2 text-sm font-bold uppercase tracking-wide text-void"
               onClick={() => setMobileOpen(false)}
             >
               Inscríbete

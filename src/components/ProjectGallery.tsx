@@ -30,8 +30,8 @@ export default function ProjectGallery({ showAllLink = true }: { showAllLink?: b
   );
 
   return (
-    <section className="bg-bg-light">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <section className="relative bg-deep">
+      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <SectionHeading
           title="Proyectos Destacados"
           subtitle="Una colección de proyectos innovadores de nuestras competencias."
@@ -42,8 +42,8 @@ export default function ProjectGallery({ showAllLink = true }: { showAllLink?: b
             onClick={() => setSelectedYear(null)}
             className={`rounded-full px-5 py-1.5 text-sm font-medium transition-all ${
               selectedYear === null
-                ? "bg-navy-dark text-white"
-                : "bg-white text-gray-600 border border-gray-200 hover:border-gray-400"
+                ? "bg-neon text-void shadow-[0_0_18px_rgba(34,211,238,0.45)]"
+                : "border border-line bg-panel/60 text-text-dim hover:border-neon/40 hover:text-neon"
             }`}
           >
             Todos
@@ -54,8 +54,8 @@ export default function ProjectGallery({ showAllLink = true }: { showAllLink?: b
               onClick={() => setSelectedYear(year)}
               className={`rounded-full px-5 py-1.5 text-sm font-medium transition-all ${
                 selectedYear === year
-                  ? "bg-navy-dark text-white"
-                  : "bg-white text-gray-600 border border-gray-200 hover:border-gray-400"
+                  ? "bg-neon text-void shadow-[0_0_18px_rgba(34,211,238,0.45)]"
+                  : "border border-line bg-panel/60 text-text-dim hover:border-neon/40 hover:text-neon"
               }`}
             >
               {year}
@@ -65,27 +65,28 @@ export default function ProjectGallery({ showAllLink = true }: { showAllLink?: b
 
         {Object.entries(grouped).map(([year, items]) => (
           <div key={year} className="mb-14 last:mb-0">
-            <h3 className="font-mono text-2xl font-bold uppercase tracking-[-0.04em] text-gray-900 mb-6">
-              {year} Finalistas
+            <h3 className="font-display text-2xl font-bold uppercase tracking-tight text-text mb-6 flex items-center gap-3">
+              <span className="text-neon">{year}</span> Finalistas
+              <span className="h-px flex-1 bg-line" />
             </h3>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {items.map((project) => (
                 <Link key={project.id} href={`/proyectos/${project.slug}`} className="group block">
-                  <div className="relative overflow-hidden rounded-xl bg-white shadow-sm border border-gray-100 transition-all group-hover:shadow-lg">
-                    <div className="relative aspect-video overflow-hidden bg-gray-100">
+                  <div className="relative overflow-hidden rounded-xl border border-line bg-panel/60 transition-all group-hover:border-neon/40 group-hover:shadow-[0_0_30px_rgba(34,211,238,0.18)]">
+                    <div className="relative aspect-video overflow-hidden bg-deep">
                       <Image
                         src={`/projects/${project.slug}.jpg`}
                         alt={project.title}
                         fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                        className="object-cover opacity-90 transition-all duration-300 group-hover:scale-[1.03] group-hover:opacity-100"
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                       />
                     </div>
                     <div className="p-4">
-                      <h3 className="font-semibold text-navy-dark group-hover:text-blue-bright transition-colors">
+                      <h3 className="font-semibold text-text group-hover:text-neon transition-colors">
                         {project.title}
                       </h3>
-                      <p className="mt-1 text-sm text-gray-500 line-clamp-2 leading-relaxed">
+                      <p className="mt-1 text-sm text-text-mute line-clamp-2 leading-relaxed">
                         {project.description}
                       </p>
                     </div>
@@ -100,7 +101,7 @@ export default function ProjectGallery({ showAllLink = true }: { showAllLink?: b
           <div className="text-center mt-10">
             <Link
               href="/proyectos"
-              className="inline-flex items-center gap-2 rounded-lg border border-navy-dark px-6 py-2.5 text-sm font-semibold text-navy-dark transition-all hover:bg-navy-dark hover:text-white"
+              className="inline-flex items-center gap-2 rounded-lg border border-neon/40 px-6 py-2.5 text-sm font-semibold uppercase tracking-wide text-neon transition-all hover:bg-neon/10 hover:shadow-[0_0_20px_rgba(34,211,238,0.25)]"
             >
               Ver todos los proyectos
               <IconArrow />

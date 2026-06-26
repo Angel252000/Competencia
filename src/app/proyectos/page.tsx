@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import PageHeader from "@/components/PageHeader";
 import ProjectGallery from "@/components/ProjectGallery";
 
 export const metadata: Metadata = {
@@ -8,10 +9,14 @@ export const metadata: Metadata = {
 
 export default function ProyectosPage() {
   return (
-    <div className="bg-bg-light min-h-screen">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <ProjectGallery showAllLink={false} />
-      </div>
-    </div>
+    <>
+      <PageHeader
+        variant="proyectos"
+        badge="Galería de talento"
+        title="Proyectos"
+        subtitle="Explora los proyectos más innovadores de nuestras competencias."
+      />
+      <ProjectGallery showAllLink={false} />
+    </>
   );
 }

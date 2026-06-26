@@ -1,6 +1,6 @@
 "use client";
 
-import { useId } from "react";
+import { useId, type ReactNode } from "react";
 
 function IsoBlock({
   tx, ty, w, d, h, topColor, leftColor, rightColor, className,
@@ -343,6 +343,184 @@ export function IsometricGears({ className }: { className?: string }) {
           <circle cx={122} cy={56} r={5} fill="#0a1a3a" opacity="0.4" />
         </g>
       </g>
+    </svg>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Cuadros nuevos (piezas focales por página)                         */
+/* ------------------------------------------------------------------ */
+
+function IsoRocket({ tx, ty }: { tx: number; ty: number }) {
+  return (
+    <g transform={`translate(${tx}, ${ty})`}>
+      <g style={{ animation: "pulse-slow 1.1s ease-in-out infinite" }}>
+        <polygon points="-8,72 0,104 8,72" fill="#EAA914" />
+        <polygon points="-4.5,72 0,90 4.5,72" fill="#FF6B6B" />
+      </g>
+      <polygon points="-13,52 -26,74 -13,72" fill="#1065E4" />
+      <polygon points="13,52 26,74 13,72" fill="#0d4eb8" />
+      <path d="M0,-2 C17,18 17,54 11,72 L-11,72 C-17,54 -17,18 0,-2 Z" fill="#EEF3FA" />
+      <path d="M0,-2 C17,18 17,54 11,72 L0,72 L0,-2 Z" fill="#C2CFE0" />
+      <path d="M0,-2 C9,9 12,16 13,23 C6,9 -6,9 -13,23 C-12,16 -9,9 0,-2 Z" fill="#FF6B6B" />
+      <circle cx="0" cy="30" r="10" fill="#0a1a3a" />
+      <circle cx="0" cy="30" r="7.5" fill="#4A90FF" />
+      <circle cx="-2.5" cy="27.5" r="2.6" fill="#cfe2ff" />
+    </g>
+  );
+}
+
+function IsoBulb({ tx, ty }: { tx: number; ty: number }) {
+  return (
+    <g transform={`translate(${tx}, ${ty})`}>
+      <circle cx="0" cy="0" r="34" fill="#EAA914" opacity="0.18" style={{ animation: "pulse-slow 3s ease-in-out infinite" }} />
+      <circle cx="0" cy="0" r="23" fill="#FFD75E" />
+      <path d="M-23,0 A23,23 0 0,1 8,-21 A20,20 0 0,0 -16,16 A23,23 0 0,1 -23,0 Z" fill="#FFE9A0" opacity="0.8" />
+      <path d="M-7,3 L0,-9 L7,3" stroke="#CD900A" strokeWidth="2.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      <rect x="-10" y="19" width="20" height="6" rx="2" fill="#C2CFE0" />
+      <rect x="-9" y="26" width="18" height="5" rx="2" fill="#8aa0bd" />
+      <rect x="-7" y="32" width="14" height="6" rx="3" fill="#C2CFE0" />
+    </g>
+  );
+}
+
+function IsoCalendar({ tx, ty }: { tx: number; ty: number }) {
+  const cos30 = 0.866;
+  const sin30 = 0.5;
+  const s = 36;
+  const h = 11;
+  const rX = s * cos30;
+  const rY = s * sin30;
+  const lX = -s * cos30;
+  const lY = s * sin30;
+  const bX = rX + lX;
+  const bY = rY + lY;
+  return (
+    <g transform={`translate(${tx}, ${ty})`}>
+      <polygon points={`${rX},${rY} ${bX},${bY} ${bX},${bY + h} ${rX},${rY + h}`} fill="#0d4eb8" />
+      <polygon points={`${lX},${lY} 0,0 0,${h} ${lX},${lY + h}`} fill="#1065E4" />
+      <polygon points={`0,0 ${rX},${rY} ${bX},${bY} ${lX},${lY}`} fill="#EEF3FA" />
+      <polygon points={`0,0 ${rX * 0.32},${rY * 0.32} ${bX + lX * -0.68},${(rY * 0.32) + lY} ${lX},${lY}`} fill="#FF6B6B" />
+      {[0.4, 0.65, 0.9].map((t, i) => (
+        <line key={`g${i}`} x1={lX * (1 - t)} y1={lY * (1 - t)} x2={rX + (bX - rX) * t} y2={rY + (bY - rY) * t} stroke="#b9c7db" strokeWidth="0.7" opacity="0.7" />
+      ))}
+      {[0.4, 0.65, 0.9].map((t, i) => (
+        <line key={`h${i}`} x1={rX * (1 - t)} y1={rY * (1 - t)} x2={lX + (bX - lX) * t} y2={lY + (bY - lY) * t} stroke="#b9c7db" strokeWidth="0.7" opacity="0.7" />
+      ))}
+      <rect x={-3} y={-9} width={2.4} height={8} rx={1.2} fill="#0a1a3a" />
+      <rect x={6} y={-7} width={2.4} height={8} rx={1.2} fill="#0a1a3a" />
+    </g>
+  );
+}
+
+function IsoEnvelope({ tx, ty }: { tx: number; ty: number }) {
+  const cos30 = 0.866;
+  const sin30 = 0.5;
+  const s = 40;
+  const h = 9;
+  const rX = s * cos30;
+  const rY = s * sin30;
+  const lX = -s * cos30;
+  const lY = s * sin30;
+  const bX = rX + lX;
+  const bY = rY + lY;
+  const cx = (rX + lX) / 2;
+  const cy = (rY + lY) / 2;
+  return (
+    <g transform={`translate(${tx}, ${ty})`}>
+      <polygon points={`${rX},${rY} ${bX},${bY} ${bX},${bY + h} ${rX},${rY + h}`} fill="#0d4eb8" />
+      <polygon points={`${lX},${lY} 0,0 0,${h} ${lX},${lY + h}`} fill="#1065E4" />
+      <polygon points={`0,0 ${rX},${rY} ${bX},${bY} ${lX},${lY}`} fill="#EEF3FA" />
+      <polyline points={`${lX},${lY} ${cx},${cy + 6} ${rX},${rY}`} fill="none" stroke="#9fb3cd" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+      <polyline points={`${lX},${lY} ${cx},${cy - 5} ${rX},${rY}`} fill="none" stroke="#EAA914" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx={cx} cy={cy - 5} r={3.2} fill="#FF6B6B" />
+    </g>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Banner reutilizable para encabezados de páginas internas           */
+/* ------------------------------------------------------------------ */
+
+const BANNER_FOCAL: Record<string, ReactNode> = {
+  registro: <IsoRocket tx={260} ty={78} />,
+  faq: <IsoBulb tx={260} ty={150} />,
+  cronograma: <IsoCalendar tx={235} ty={120} />,
+  contacto: <IsoEnvelope tx={232} ty={135} />,
+  proyectos: <IsoMonitor tx={258} ty={120} />,
+};
+
+export function IsometricBanner({
+  variant,
+  className,
+}: {
+  variant: keyof typeof BANNER_FOCAL;
+  className?: string;
+}) {
+  return (
+    <svg viewBox="0 0 520 300" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id={`banner-glow-${variant}`} cx="50%" cy="45%" r="60%">
+          <stop offset="0%" stopColor="#1a3568" stopOpacity="0.55" />
+          <stop offset="100%" stopColor="#0a1a3a" stopOpacity="0" />
+        </radialGradient>
+        <filter id={`banner-shadow-${variant}`}>
+          <feDropShadow dx="0" dy="5" stdDeviation="6" floodColor="#000" floodOpacity="0.3" />
+        </filter>
+      </defs>
+
+      <rect x="40" y="20" width="440" height="260" rx="24" fill={`url(#banner-glow-${variant})`} />
+      <ellipse cx="260" cy="248" rx="180" ry="26" fill="#0a1428" opacity="0.55" />
+
+      <g filter={`url(#banner-shadow-${variant})`}>
+        <g style={{ animation: "float 3.6s ease-in-out infinite" }}>{BANNER_FOCAL[variant]}</g>
+
+        <g style={{ animation: "float 4.4s ease-in-out infinite 0.5s" }}>
+          <IsoBlock tx={120} ty={170} w={46} d={46} h={28}
+            topColor="#4A90FF" leftColor="#1065E4" rightColor="#0d4eb8" />
+        </g>
+        <g style={{ animation: "float 4s ease-in-out infinite 1s" }}>
+          <IsoBlock tx={172} ty={198} w={28} d={28} h={18}
+            topColor="#EAA914" leftColor="#CD900A" rightColor="#A07008" />
+        </g>
+        <g style={{ animation: "float 4.8s ease-in-out infinite 0.8s" }}>
+          <IsoBlock tx={372} ty={186} w={40} d={40} h={22}
+            topColor="#1065E4" leftColor="#0d4eb8" rightColor="#0a3a8a" />
+        </g>
+        <g style={{ animation: "float 3.4s ease-in-out infinite 1.6s" }}>
+          <IsoBlock tx={398} ty={214} w={20} d={20} h={20}
+            topColor="#FF6B6B" leftColor="#E05555" rightColor="#B84040" />
+        </g>
+        <g style={{ animation: "float 4.2s ease-in-out infinite 0.3s" }}>
+          <IsoPyramid tx={330} ty={216} w={18} d={18} h={26}
+            frontColor="#EAA914" leftColor="#CD900A" rightColor="#A07008" />
+        </g>
+        <g style={{ animation: "float 5s ease-in-out infinite 2s" }}>
+          <IsoBlock tx={86} ty={214} w={16} d={16} h={16}
+            topColor="#4A90FF" leftColor="#1065E4" rightColor="#0d4eb8" />
+        </g>
+      </g>
+
+      <g fill="none" fontFamily="monospace" fontWeight="bold">
+        <text x={150} y={96} fill="#4A90FF" fontSize="20" opacity="0.45"
+          style={{ animation: "float 3s ease-in-out infinite 0.3s" }}>{'<'}</text>
+        <text x={360} y={104} fill="#EAA914" fontSize="18" opacity="0.4"
+          style={{ animation: "float 3.5s ease-in-out infinite 1.2s" }}>{'/>'}</text>
+        <text x={262} y={70} fill="#FFFFFF" fontSize="14" opacity="0.28"
+          style={{ animation: "float 4s ease-in-out infinite 0.8s" }}>{'{ }'}</text>
+      </g>
+
+      {[
+        [170, 70, 3, "#4A90FF", "1s"],
+        [380, 72, 2.4, "#EAA914", "2s"],
+        [110, 120, 2, "#FF6B6B", "3s"],
+        [430, 130, 2.6, "#4A90FF", "0.5s"],
+      ].map(([x, y, r, col, delay], i) => (
+        <circle key={i}
+          cx={x as number} cy={y as number} r={r as number} fill={col as string}
+          opacity="0.3"
+          style={{ animation: `float ${3 + i * 0.3}s ease-in-out infinite ${delay}` }} />
+      ))}
     </svg>
   );
 }
